@@ -2,7 +2,7 @@
 #include<sys/attribs.h>  // __ISR macro
 
 // DEVCFG0
-#pragma config DEBUG = ON // no debugging
+#pragma config DEBUG = OFF // no debugging
 #pragma config JTAGEN = OFF // no jtag
 #pragma config ICESEL = ICS_PGx1 // use PGED1 and PGEC1
 #pragma config PWP = OFF // no write protect
@@ -56,19 +56,15 @@ int main() {
 
     // do your TRIS and LAT commands here
     TRISAbits.TRISA4 = 0; // sets pin A4 to output
-    LATAbits.LATA4 = 1; // sets pin A4 to high
+    LATAbits.LATA4 = 0; // sets pin A4 to high
     TRISBbits.TRISB4 = 1; // sets pin B4 to input
     __builtin_enable_interrupts();
 
     while(1) {
         _CP0_SET_COUNT(0);
-        if (PORTBbits.RB4==0){
-            while(_CP0_GET_COUNT()<24000){;} // wait (48 million / 2 / 1000 = 24000)
-                LATAbits.LATA4 = !LATAbits.LATA4; // toggles LED at 1 kHz
-        }
-        else if (PORTBbits.RB4==1){
-            LATAbits.LATA4 = 0; // turn off LED when button is pressed.
-        }
+        while(_CP0_GET_COUNT()<24000){;} // wait (48 million / 2 / 1000 Hz = 24000)
+        LATAbits.LATA4 = !LATAbits.LATA4; // toggles LED at 1khz
+        while(PORTBbits.RB4==0){;} // wait if button is pressed
 	// remember the core timer runs at half the sysclk
     }
 }
