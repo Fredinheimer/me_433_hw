@@ -60,9 +60,9 @@ int main() {
     __builtin_enable_interrupts();
 
     while(1) {
-	_CP0_SET_COUNT(0)
+	_CP0_SET_COUNT(0);
     while(_CP0_GET_COUNT()<24000){;} // wait (48 million / 2 / 1000 = 24000)
-    LATAbits.LATA4 = !LATAbits.LATA4 // toggles LED at 1 kHz
+    LATAbits.LATA4 = !LATAbits.LATA4; // toggles LED at 1 kHz
 	// remember the core timer runs at half the sysclk
     }
 }
