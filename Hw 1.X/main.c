@@ -43,7 +43,8 @@ int main() {
 
     // set the CP0 CONFIG register to indicate that kseg0 is cacheable (0x3)
     __builtin_mtc0(_CP0_CONFIG, _CP0_CONFIG_SELECT, 0xa4210583);
-
+    ANSELA = 0;
+    ANSELB = 0;
     // 0 data RAM access wait states
     BMXCONbits.BMXWSDRM = 0x0;
 
@@ -55,14 +56,19 @@ int main() {
 
     // do your TRIS and LAT commands here
     TRISAbits.TRISA4 = 0; // sets pin A4 to output
-    LATAbits.LATA4 = 0; // sets pin A4 to high
+    LATAbits.LATA4 = 1; // sets pin A4 to high
     TRISBbits.TRISB4 = 1; // sets pin B4 to input
     __builtin_enable_interrupts();
 
     while(1) {
-	_CP0_SET_COUNT(0);
-    while(_CP0_GET_COUNT()<24000){;} // wait (48 million / 2 / 1000 = 24000)
-    LATAbits.LATA4 = !LATAbits.LATA4; // toggles LED at 1 kHz
+        _CP0_SET_COUNT(0);
+        if (PORTBbits.RB4==0){
+            while(_CP0_GET_COUNT()<24000){;} // wait (48 million / 2 / 1000 = 24000)
+                LATAbits.LATA4 = !LATAbits.LATA4; // toggles LED at 1 kHz
+        }
+        else if (PORTBbits.RB4==1){
+            LATAbits.LATA4 = 0; // turn off LED when button is pressed.
+        }
 	// remember the core timer runs at half the sysclk
     }
 }
