@@ -1970,9 +1970,11 @@ design rules under a new name.</description>
 <via x="71.4502" y="62.0776" extent="1-16" drill="0.35"/>
 <wire x1="71.4502" y1="62.0776" x2="73.0504" y2="62.0776" width="0.254" layer="1"/>
 <via x="73.0504" y="62.0776" extent="1-16" drill="0.35"/>
-<wire x1="73.0504" y1="62.0776" x2="73.0504" y2="60.4604" width="0.254" layer="16"/>
-<wire x1="73.0504" y1="60.4604" x2="73" y2="60.41" width="0.254" layer="16"/>
-<via x="73" y="60.41" extent="1-16" drill="0.35"/>
+<wire x1="73.0504" y1="62.0776" x2="73.152" y2="61.976" width="0.254" layer="16"/>
+<wire x1="73.152" y1="60.562" x2="73" y2="60.41" width="0.254" layer="16"/>
+<wire x1="73.0504" y1="62.0776" x2="73" y2="62.0272" width="0.1524" layer="1"/>
+<wire x1="73" y1="62.0272" x2="73" y2="60.41" width="0.1524" layer="1"/>
+<wire x1="73" y1="60.41" x2="73" y2="60.41" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="B8">
 <contactref element="U$2" pad="44"/>
