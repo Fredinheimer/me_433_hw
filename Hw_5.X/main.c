@@ -69,9 +69,15 @@ int main() {
 
     while(1) {
         _CP0_SET_COUNT(0);
-        while(_CP0_GET_COUNT()<2400000){;} // wait (48 million / 2 / 1000 Hz = 24000)
-        LATAbits.LATA4 = !LATAbits.LATA4; // toggles LED at 1khz
-        setExpander(0,1);
+        while(_CP0_GET_COUNT()<2400000){;} // wait 
+        LATAbits.LATA4 = !LATAbits.LATA4; // toggles LED 
+        if (getExpander()<0){
+            setExpander(0,1);
+        }else {
+            setExpander(0,0);
+            
+        }
+            
 	// remember the core timer runs at half the sysclk
     }
 }
@@ -82,14 +88,22 @@ void initExpander(){
     i2c_master_send(0b11111110); // makes pin GP0 an output
     i2c_master_stop();   
 }
-void setExpander(char pin, ch ar level){
-    i2c_master_start();
-    i2c_master_send(SLAVE_ADR<<1|0);
-    i2c_master_send(0x0A);
-    i2c_master_send(level<<pin);
-    i2c_master_stop();
+void setExpander(char pin, char level){
+    i2c_master_start(); // start up
+    i2c_master_send(SLAVE_ADR<<1|0); // write to device
+    i2c_master_send(0x0A); // use OLAT
+    i2c_master_send(level<<pin); // choose pin to turn on
+    i2c_master_stop(); 
 }
 
 char getExpander(){
-
+    i2c_master_start();
+    i2c_master_send(SLAVE_ADR<<1|0); // write first
+    i2c_master_send(0x09); // do GPIO
+    i2c_master_restart(); // restart for read
+    i2c_master_send(SLAVE_ADR<<1|1); // read device
+    char r = i2c_master_recv(); 
+    i2c_master_ack(1); // send acknowledgement
+    i2c_master_stop();
+    return r;
 }
