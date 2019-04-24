@@ -310,12 +310,12 @@ void LCD_drawBar_UD(unsigned short x, unsigned short y, unsigned short filledcol
     int i;
     int j;
     for (i=0;i<progress;i++){
-        for(j=0; j<5;j++){
+        for(j=0; j<8;j++){
 			LCD_drawPixel(x+j,y+i,filledcolor);
         }
     }
 	for (i=progress;i<size;i++){
-        for(j=0; j<5;j++){
+        for(j=0; j<8;j++){
 			LCD_drawPixel(x+j,y+i,emptycolor);
         }
     }
