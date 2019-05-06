@@ -58,6 +58,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdlib.h>
 #include "system_config.h"
 #include "system_definitions.h"
+#include "i2c_master_noint.h"
 
 void I2C_read_multiple(unsigned char * data, int length);
 void init_IMU(void);
