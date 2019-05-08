@@ -56,6 +56,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "app.h"
 #include <stdio.h>
 #include <xc.h>
+#include <math.h>
 #define SLAVE_ADR 0b1101011
 // *****************************************************************************
 // *****************************************************************************
@@ -69,6 +70,12 @@ int len, i = 0;
 int startTime = 0; // to remember the loop time
 short temp,gyroX,gyroY,gyroZ,accelX,accelY,accelZ;
 char data[14];
+float fir[5] = {0.0338,0.2401,0.4521,0.2401,0.0338};
+float firdata;
+char buffer[5] = {0,0,0,0,0};
+float MAF;
+float pastAVG = 0;
+float IIR;
 // *****************************************************************************
 /* Application Data
 
@@ -473,18 +480,27 @@ void APP_Tasks(void) {
             /* THIS IS WHERE YOU CAN READ YOUR IMU, PRINT TO THE LCD, ETC */
             for (i=0;i<100;i++){
                 I2C_read_multiple(data,14);
-                temp =(data[1]<<8)|data[0];
-                gyroX =(data[3]<<8)|data[2];
-                gyroY =(data[5]<<8)|data[4];
-                gyroZ =(data[7]<<8)|data[6];
-                accelX =(data[9]<<8)|data[8];
-                accelY =(data[11]<<8)|data[10];
-                accelZ =(data[13]<<8)|data[12];
-                len = sprintf(dataOut, "%d  %d  %d  %d  %d  %d  %d\r\n", i,accelX,accelY,accelZ,gyroX,gyroY,gyroZ); // write IMU data
+                //temp =(data[1]<<8)|data[0];
+                //gyroX =(data[3]<<8)|data[2];
+                //gyroY =(data[5]<<8)|data[4];
+                //gyroZ =(data[7]<<8)|data[6];
+                //accelX =(data[9]<<8)|data[8];
+                //accelY =(data[11]<<8)|data[10];
+                accelZ =(data[13]<<8)|data[12]; // just read z acceleration
+                pastAVG = buffer[0]+buffer[1]+buffer[2]+buffer[3]+buffer[4]; // sum past elements for IIR
+                buffer[0]=buffer[1]; // add in new value and throw away oldest value.
+                buffer[1]=buffer[2];
+                buffer[2]=buffer[3];
+                buffer[3]=buffer[4];
+                buffer[4]=accelZ; 
+                MAF = (buffer[0]+buffer[1]+buffer[2]+buffer[3]+buffer[4])/5.0; // do moving average
+                IIR = 0.4*pastAVG + 0.6*buffer[4]; // perform IIR
+                firdata = buffer[0]*fir[0]+buffer[1]*fir[1]+buffer[2]*fir[2]+buffer[3]*fir[3]+buffer[4]*fir[4]; // perform fir
+                len = sprintf(dataOut, "%d    %d    %f    %f    %f\r\n", i,accelZ,MAF,IIR,firdata); // write IMU data
                 USB_DEVICE_CDC_Write(USB_DEVICE_CDC_INDEX_0,
                         &appData.writeTransferHandle, dataOut, len,
                         USB_DEVICE_CDC_TRANSFER_FLAGS_DATA_COMPLETE);
-                startTime = _CP0_GET_COUNT(); // reset the timer for acurate delays
+                startTime = _CP0_GET_COUNT(); // reset the timer for accurate delays
                 _CP0_SET_COUNT(0);
                 while (_CP0_GET_COUNT() < 24000000/100){;} // 100 Hz of data
             }
