@@ -1,0 +1,58 @@
+﻿
+Unigraphics NX V12.0 / 2D Exchange
+
+Reading part: C:\Users\Owner\Documents\Northwestern\ME433\BoxPanel3.prt
+
+
+Writing part: C:\Users\Owner\AppData\Local\Temp\Owne069480E8kqnb.prt
+
+Elapsed time   :    0 minutes,  0 seconds
+Actual CPU Time:    0 minutes,  1 seconds
+
+INFO-
+INFO-		Unigraphics Version NX V12.0 to AutoCAD 2004
+INFO-		
+INFO-
+INFO-		Running UGTODWG Translator .....
+INFO-
+INFO-		Start of Translation: Wed May 15 22:15:01 2019
+INFO-
+STATUS-		Converting C:\Users\Owner\AppData\Local\Temp\Owne069480E8kqnb.prt
+STATUS-
+----------------------------------------------------------------------------
+SUMMARY-                     Warnings
+----------------------------------------------------------------------------
+1. Font file <txt.shx> not found.
+   For text translation improvement, set environment variable DXFDWG_FONTS_DIR to directory contaning font files
+   OR place this font file at location pointed to by DXFDWG_DIR.
+-------------------------------End------------------------------------------
+
+SUMMARY-
+SUMMARY-	Summary of Unigraphics Input Entities
+SUMMARY-	For Unigraphics File: C:\Users\Owner\AppData\Local\Temp\Owne069480E8kqnb.prt
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-	Entity Type					Count
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-	Line .....................................:	120
+SUMMARY-	Point ....................................:	1
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-	Total ....................................:	121
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-
+STATUS-
+INFO-
+INFO-		Writing File: C:\Users\Owner\Documents\GitHub\me_433_hw\HW_13\BoxPanel3.dwg
+SUMMARY-	Summary of AutoCAD Output Entities
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-	Entity Type					Count
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-	Point ....................................:	1
+SUMMARY-	Line .....................................:	120
+SUMMARY-	Layout ...................................:	6
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-	Total ....................................:	127
+SUMMARY-	------------------------------------------------------------------
+SUMMARY-
+INFO-
+INFO-		End of Translation: Wed May 15 22:15:02 2019
+INFO-		Translation CPU time: 0 m, 1 sINFO-

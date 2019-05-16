@@ -119,4 +119,5 @@ build/default/production/_ext/1688732426/system_tasks.o:  \
  ../../../../../../../../microchip/harmony/v2_06/framework/peripheral/ports/processor/../templates/ports_ChangeNoticeEdgeStatus_Unsupported.h  \
  ../../../../../../../../microchip/harmony/v2_06/framework/peripheral/ports/plib_ports_compatibility.h  \
  ../src/app.h  \
-../src/system_config/default/system_definitions.h 
+../src/system_config/default/system_definitions.h  \
+ ../src/i2c_master_noint.h 
