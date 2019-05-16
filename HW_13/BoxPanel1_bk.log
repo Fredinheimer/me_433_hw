@@ -4,24 +4,32 @@ Unigraphics NX V12.0 / 2D Exchange
 Reading part: C:\Users\Owner\Documents\Northwestern\ME433\BoxPanel1.prt
 
 
-Writing part: C:\Users\Owner\AppData\Local\Temp\Owne069CB895lwic.prt
+Writing part: C:\Users\Owner\AppData\Local\Temp\Owne069480E8kqml.prt
 
-Elapsed time   :    0 minutes,  0 seconds
+Elapsed time   :    0 minutes,  1 seconds
 Actual CPU Time:    0 minutes,  1 seconds
 
 INFO-
 INFO-		Unigraphics Version NX V12.0 to AutoCAD 2004
 INFO-		
 INFO-
-INFO-		Running UGTODXF Translator .....
+INFO-		Running UGTODWG Translator .....
 INFO-
-INFO-		Start of Translation: Thu May 16 11:59:50 2019
+INFO-		Start of Translation: Wed May 15 22:12:47 2019
 INFO-
-STATUS-		Converting C:\Users\Owner\AppData\Local\Temp\Owne069CB895lwic.prt
+STATUS-		Converting C:\Users\Owner\AppData\Local\Temp\Owne069480E8kqml.prt
 STATUS-
+----------------------------------------------------------------------------
+SUMMARY-                     Warnings
+----------------------------------------------------------------------------
+1. Font file <txt.shx> not found.
+   For text translation improvement, set environment variable DXFDWG_FONTS_DIR to directory contaning font files
+   OR place this font file at location pointed to by DXFDWG_DIR.
+-------------------------------End------------------------------------------
+
 SUMMARY-
 SUMMARY-	Summary of Unigraphics Input Entities
-SUMMARY-	For Unigraphics File: C:\Users\Owner\AppData\Local\Temp\Owne069CB895lwic.prt
+SUMMARY-	For Unigraphics File: C:\Users\Owner\AppData\Local\Temp\Owne069480E8kqml.prt
 SUMMARY-	------------------------------------------------------------------
 SUMMARY-	Entity Type					Count
 SUMMARY-	------------------------------------------------------------------
@@ -34,7 +42,7 @@ SUMMARY-	------------------------------------------------------------------
 SUMMARY-
 STATUS-
 INFO-
-INFO-		Writing File: C:\Users\Owner\Documents\GitHub\me_433_hw\HW_13\BoxPanel1.dxf
+INFO-		Writing File: C:\Users\Owner\Documents\GitHub\me_433_hw\HW_13\BoxPanel1.dwg
 SUMMARY-	Summary of AutoCAD Output Entities
 SUMMARY-	------------------------------------------------------------------
 SUMMARY-	Entity Type					Count
@@ -48,5 +56,5 @@ SUMMARY-	Total ....................................:	245
 SUMMARY-	------------------------------------------------------------------
 SUMMARY-
 INFO-
-INFO-		End of Translation: Thu May 16 11:59:51 2019
-INFO-		Translation CPU time: 0 m, 2 sINFO-
+INFO-		End of Translation: Wed May 15 22:12:48 2019
+INFO-		Translation CPU time: 0 m, 0 sINFO-
